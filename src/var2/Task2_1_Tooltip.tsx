@@ -16,7 +16,7 @@ function Tooltip({ text, targetRef }: TooltipProps) {
     const rect = targetRef.current.getBoundingClientRect();
     const h = tooltipRef.current.offsetHeight;
     setPos({ top: rect.top - h - 8, left: rect.left });
-  }, [text]);
+  }, [text, targetRef]);
 
   return (
     <div ref={tooltipRef} style={{ position: "fixed", ...pos }}>
