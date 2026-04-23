@@ -1,5 +1,6 @@
-import Task1_1_TodoList from "./var1/Task1_1_TodoList";
-import { useState } from "react";
+import TodoList from "./var1/Task1_1_TodoList";
+import ProfileEditor from "./var1/Task1_2_ProfileEditor";
+import {  useState } from "react";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -8,17 +9,20 @@ function App() {
     { text: "выжить после укола", done: false, id: 3 },
   ]);
 
+  const [userId, setUserId] = useState(1);
 
   const hanldeDelete = (i: number) => {
     setTodos(todos.filter((_, index) => index !== i));
   };
 
   const handleToggle = (id: number) => {
-    setTodos(todos.map(n=> n.id === id ? {...n, done: !n.done} : n))
-  }
+    setTodos(todos.map((n) => (n.id === id ? { ...n, done: !n.done } : n)));
+  };
   return (
     <>
-      <Task1_1_TodoList todos={todos} onDelete={hanldeDelete} onToggle={handleToggle} />
+      <TodoList todos={todos} onDelete={hanldeDelete} onToggle={handleToggle} />
+      <button onClick={() => setUserId((id) => id + 1)}>change user</button>
+      <ProfileEditor key={userId} userId={userId} />
     </>
   );
 }
