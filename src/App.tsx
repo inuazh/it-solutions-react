@@ -7,12 +7,18 @@ function App() {
     { text: "сделать домашку", done: true, id: 2 },
     { text: "выжить после укола", done: false, id: 3 },
   ]);
+
+
   const hanldeDelete = (i: number) => {
     setTodos(todos.filter((_, index) => index !== i));
   };
+
+  const handleToggle = (id: number) => {
+    setTodos(todos.map(n=> n.id === id ? {...n, done: !n.done} : n))
+  }
   return (
     <>
-      <Task1_1_TodoList todos={todos} onDelete={hanldeDelete} />
+      <Task1_1_TodoList todos={todos} onDelete={hanldeDelete} onToggle={handleToggle} />
     </>
   );
 }
