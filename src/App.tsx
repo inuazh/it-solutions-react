@@ -1,6 +1,7 @@
 import TodoList from "./var1/Task1_1_TodoList";
 import ProfileEditor from "./var1/Task1_2_ProfileEditor";
 import {  useState } from "react";
+import ClickTracker from "./var1/Task1_3_ClickTracker";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -23,6 +24,7 @@ function App() {
       <TodoList todos={todos} onDelete={hanldeDelete} onToggle={handleToggle} />
       <button onClick={() => setUserId((id) => id + 1)}>change user</button>
       <ProfileEditor key={userId} userId={userId} />
+      <ClickTracker/>
     </>
   );
 }
