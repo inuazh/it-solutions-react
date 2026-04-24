@@ -6,6 +6,8 @@ import Tooltip from "./var2/Task2_1_Tooltip";
 import Parent from "./var2/Task2_2_HookOrder";
 import UserCard from "./var2/Task2_3_UserCard";
 import ProductSearch from "./var3/Task3_1_ProductSearch";
+import ProductSearch2 from "./var3/Task3_2_ProductSearchDeferred";
+import Dashboard from "./var3/Task3_3_Dashboard";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -14,11 +16,10 @@ function App() {
     { text: "выжить после укола", done: false, id: 3 },
   ]);
 
-  const products = Array.from({ length: 20000}, (_,i) => ( {
+  const products = Array.from({ length: 20000 }, (_, i) => ({
     id: i,
-    name: `Product ${i}`
-  }
-  ))
+    name: `Product ${i}`,
+  }));
 
   const [varActive, setVar] = useState(1);
 
@@ -55,38 +56,46 @@ function App() {
             hover on me
           </button>
           <Tooltip text="hello " targetRef={targetRef} />
-          <Parent/>
+          <Parent />
 
           <div>
             <h4>задание 2.2</h4>
             <p>Parent render</p>
             <p>Child: render - внутри реакт видит чайлд и рендерит</p>
             <p>
-              Child: useLayoutEffect - после коммита сначала дети<br />(тк родители
-              могут зависеть от результата эфекта ребенка)
+              Child: useLayoutEffect - после коммита сначала дети
+              <br />
+              (тк родители могут зависеть от результата эфекта ребенка)
             </p>
             <p>Parent: useLayoutEffect - потом родители</p>
             <p>Child: useEffect - после отрисовки сначала дети</p>
             <p> parent: useEffect - потом родители</p>
 
             <p>
-              cleanup при первом mount не срабатывает <br /> cleanup
-              запускается только при размонтировании компонента <br />
-              или перед следующим запуском эффекта
-              в дев режиме включается strict mode, то есть реакт специально<br />
+              cleanup при первом mount не срабатывает <br /> cleanup запускается
+              только при размонтировании компонента <br />
+              или перед следующим запуском эффекта в дев режиме включается
+              strict mode, то есть реакт специально
+              <br />
               монтирует компонет и сразу размонтирует, потом монтирует снова
-              поэтому каждый эффект будет продублирован и будут клинапы, потому что элемент размонтировался
+              поэтому каждый эффект будет продублирован и будут клинапы, потому
+              что элемент размонтировался
             </p>
           </div>
 
-          <UserCard userId={userId}/>
+          <UserCard userId={userId} />
         </>
       )}
 
-      {varActive === 3 && <ProductSearch products={products}/>}
       <button onClick={() => setVar(1)}>variant1</button>
       <button onClick={() => setVar(2)}>change to variant2</button>
-      <button onClick={() => setVar(3)}>change to variant3</button>
+      <button onClick={() => setVar(3)}>change to variant3.1</button>
+      <button onClick={() => setVar(4)}>change to variant3.2</button>
+      <button onClick={() => setVar(5)}>change to variant3.3</button>
+
+      {varActive === 3 && <ProductSearch products={products} />}
+      {varActive === 4 && <ProductSearch2 products={products} />}
+      {varActive === 5 && <Dashboard/>}
     </>
   );
 }

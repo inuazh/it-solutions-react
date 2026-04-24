@@ -4,7 +4,7 @@ type ProductSearchProps = {
   products: Product[];
 };
 
-type Product = {
+export type Product = {
   name: string;
   id: number;
 };
@@ -13,7 +13,7 @@ type ProductListProps = {
   items: Product[];
 };
 
-function ProductList({ items }: ProductListProps) {
+export function ProductList({ items }: ProductListProps) {
   return (
     <ul>
       {items.map((p) => (
