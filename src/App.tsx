@@ -1,6 +1,6 @@
 import TodoList from "./var1/Task1_1_TodoList";
 import ProfileEditor from "./var1/Task1_2_ProfileEditor";
-import { useState, useRef } from "react";
+import { useState, useRef, Suspense } from "react";
 import ClickTracker from "./var1/Task1_3_ClickTracker";
 import Tooltip from "./var2/Task2_1_Tooltip";
 import Parent from "./var2/Task2_2_HookOrder";
@@ -8,6 +8,7 @@ import UserCard from "./var2/Task2_3_UserCard";
 import ProductSearch from "./var3/Task3_1_ProductSearch";
 import ProductSearch2 from "./var3/Task3_2_ProductSearchDeferred";
 import Dashboard from "./var3/Task3_3_Dashboard";
+import { Skeleton } from "./var3/Task3_3_Dashboard";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -95,7 +96,14 @@ function App() {
 
       {varActive === 3 && <ProductSearch products={products} />}
       {varActive === 4 && <ProductSearch2 products={products} />}
-      {varActive === 5 && <Dashboard/>}
+      {varActive === 5 && 
+      <Suspense fallback={<Skeleton/>}>
+
+      <Dashboard/>
+      </Suspense>
+
+      
+      }
     </>
   );
 }
