@@ -72,7 +72,7 @@ function App() {
             </p>
           </div>
 
-          <UserCard/>
+          <UserCard userId={userId}/>
         </>
       )}
 
