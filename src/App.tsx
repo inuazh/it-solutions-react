@@ -5,6 +5,7 @@ import ClickTracker from "./var1/Task1_3_ClickTracker";
 import Tooltip from "./var2/Task2_1_Tooltip";
 import Parent from "./var2/Task2_2_HookOrder";
 import UserCard from "./var2/Task2_3_UserCard";
+import ProductSearch from "./var3/Task3_1_ProductSearch";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -12,6 +13,12 @@ function App() {
     { text: "сделать домашку", done: true, id: 2 },
     { text: "выжить после укола", done: false, id: 3 },
   ]);
+
+  const products = Array.from({ length: 20000}, (_,i) => ( {
+    id: i,
+    name: `Product ${i}`
+  }
+  ))
 
   const [varActive, setVar] = useState(1);
 
@@ -76,7 +83,7 @@ function App() {
         </>
       )}
 
-      {varActive === 3 && <></>}
+      {varActive === 3 && <ProductSearch products={products}/>}
       <button onClick={() => setVar(1)}>variant1</button>
       <button onClick={() => setVar(2)}>change to variant2</button>
       <button onClick={() => setVar(3)}>change to variant3</button>
