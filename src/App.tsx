@@ -9,6 +9,7 @@ import ProductSearch from "./var3/Task3_1_ProductSearch";
 import ProductSearch2 from "./var3/Task3_2_ProductSearchDeferred";
 import Dashboard from "./var3/Task3_3_Dashboard";
 import { Skeleton } from "./var3/Task3_3_Dashboard";
+import Debounce from "./var3/Debounce";
 
 function App() {
   const [todos, setTodos] = useState([
@@ -93,17 +94,17 @@ function App() {
       <button onClick={() => setVar(3)}>change to variant3.1</button>
       <button onClick={() => setVar(4)}>change to variant3.2</button>
       <button onClick={() => setVar(5)}>change to variant3.3</button>
+      <button onClick={() => setVar(6)}>change to debounce</button>
 
       {varActive === 3 && <ProductSearch products={products} />}
       {varActive === 4 && <ProductSearch2 products={products} />}
-      {varActive === 5 && 
-      <Suspense fallback={<Skeleton/>}>
+      {varActive === 5 && (
+        <Suspense fallback={<Skeleton />}>
+          <Dashboard />
+        </Suspense>
+      )}
+      {varActive === 6 && <Debounce products={products}/>}
 
-      <Dashboard/>
-      </Suspense>
-
-      
-      }
     </>
   );
 }
